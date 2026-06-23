@@ -1,4 +1,4 @@
-### GoRest API Chaining Testing Project
+# GoRest API Chaining Testing Project
 
 ## Overview
 
@@ -10,12 +10,12 @@ The main objective is to simulate a real-world user lifecycle by creating, retri
 
 ## Base Information
 
-Application: GoRest Public API
-Base URL: https://gorest.co.in/public/v2
-Testing Tool: Postman
-Authentication: Bearer Token
-Test Type: Manual API Testing
-Scope: CRUD Operations 
+* Application: GoRest Public API
+* Base URL: https://gorest.co.in/public/v2
+* Testing Tool: Postman
+* Authentication: Bearer Token
+* Test Type: Manual API Testing
+* Scope: CRUD Operations 
 
 ## Project Objectives
 
@@ -29,28 +29,28 @@ Scope: CRUD Operations
 
 ## API Endpoints Tested
 
-POST /users – Create a new user
-GET /users – Retrieve user details
-PUT /users/{userid} – Update existing user
-DELETE /users/{userid} – Delete user
+- POST /users – Create a new user
+- GET /users – Retrieve user details
+- PUT /users/{userid} – Update existing user
+- DELETE /users/{userid} – Delete user
 
 ## Test Scenario
 
 The project validates a full user lifecycle:
 
-Create user using POST request
-Retrieve user using GET request
-Update user using PUT request
-Delete user using DELETE request
+- Create user using POST request
+- Retrieve user using GET request
+- Update user using PUT request
+- Delete user using DELETE request
 
 Each request is dependent on data passed from the previous request using Postman environment variables.
 
 ## Environment Variables Used
 
-auth_secret_0emk – Bearer authentication token
-userid – Stores user ID from create response
-email_env – Stores dynamically generated email
-name_env – Stores dynamically generated name
+- auth_secret_0emk – Bearer authentication token
+- userid – Stores user ID from create response
+- email_env – Stores dynamically generated email
+- name_env – Stores dynamically generated name
 
 ## Validations Performed
 
@@ -65,17 +65,17 @@ name_env – Stores dynamically generated name
 
 ## Execution Summary
 
-Total Test Cases: 5
-Passed: 5
-Failed: 0
-Pass Rate: 100 percent
+- Total Test Cases: 5
+- Passed: 5
+- Failed: 0
+- Pass Rate: 100 percent
 
-Methods Used: POST, GET, PUT, DELETE
+**Methods Used**: POST, GET, PUT, DELETE
 
 ## Status Codes Verified:
-201 Created for POST
-200 OK for GET and PUT
-204 No Content for DELETE
+- 201 Created for POST
+- 200 OK for GET and PUT
+- 204 No Content for DELETE
 
 ## Key Features
 
