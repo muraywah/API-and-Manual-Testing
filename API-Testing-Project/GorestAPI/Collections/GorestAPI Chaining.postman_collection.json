@@ -1,0 +1,288 @@
+{
+  "info": {
+    "_postman_id": "d1346fb2-4641-42ad-9868-d1ab2d27fa84",
+    "name": "GorestAPI Chaining",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "55952927",
+    "_collection_link": "https://go.postman.co/collection/55952927-d1346fb2-4641-42ad-9868-d1ab2d27fa84?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Create User",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// var jsonData = JSON.parse(responseBody);\r",
+              "// pm.environment.set(\"id\", jsonData.id);\r",
+              "\r",
+              "var jsonData = pm.response.json();\r",
+              "pm.environment.set(\"userid\", jsonData.id);"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "var random = Math.random().toString(36).substring(2);\r",
+              "\r",
+              "var useremail = \"jim\"+random+\"@gmail.com\";\r",
+              "var username = \"jim\"+random;\r",
+              "\r",
+              "pm.environment.set(\"email_env\", useremail);\r",
+              "pm.environment.set(\"name_env\",\r",
+              "username);"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\":\"{{name_env}}\",\r\n    \"email\":\"{{email_env}}\",\r\n    \"gender\":\"male\",\r\n    \"status\":\"inactive\"\r\n}   \r\n\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://gorest.co.in/public/v2/users",
+          "protocol": "https",
+          "host": [
+            "gorest",
+            "co",
+            "in"
+          ],
+          "path": [
+            "public",
+            "v2",
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get User Data",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "\r",
+              "\r",
+              "// pm.test(\"values of json fields\",() =>{ var jsonData = pm.response.json(); \r",
+              "\r",
+              "// pm.expect(jsonData.id).to.eql(pm.environment.get(\"userid\"));\r",
+              "// pm.expect(jsonData.email.toString()).to.eql(pm.environment.get(\"email_env\")); \r",
+              "//  pm.expect(jsonData.name).to.eql(pm.environment.get(\"name_env\")); \r",
+              "// }\r",
+              "// );\r",
+              "\r",
+              "pm.test(\"Values of JSON fields match environment\", () => { \r",
+              "    let responseData = pm.response.json(); \r",
+              "\r",
+              "    // IF the response is a list/array, grab the first item inside it\r",
+              "    if (Array.isArray(responseData)) {\r",
+              "        responseData = responseData[0];\r",
+              "    }\r",
+              "\r",
+              "    // Defensive check: Ensure we actually parsed data safely\r",
+              "    pm.expect(responseData).to.be.an('object', 'Response payload could not be parsed as an object');\r",
+              "    pm.expect(responseData.id).to.not.be.undefined;\r",
+              "\r",
+              "    // Debugging printouts to the console\r",
+              "    console.log(\"Parsed API ID:\", responseData.id);\r",
+              "    console.log(\"Parsed API Email:\", responseData.email);\r",
+              "    console.log(\"Saved Env Email:\", pm.environment.get(\"email_env\"));\r",
+              "\r",
+              "    // Assertions\r",
+              "    pm.expect(responseData.id.toString()).to.eql(pm.environment.get(\"userid\").toString());\r",
+              "    pm.expect(responseData.email).to.eql(pm.environment.get(\"email_env\")); \r",
+              "    pm.expect(responseData.name).to.eql(pm.environment.get(\"name_env\")); \r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://gorest.co.in/public/v2/users",
+          "protocol": "https",
+          "host": [
+            "gorest",
+            "co",
+            "in"
+          ],
+          "path": [
+            "public",
+            "v2",
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update User",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "var random = Math.random().toString(36).substring(2);\r",
+              "\r",
+              "var useremail = \"jim\"+random+\"@gmail.com\";\r",
+              "var username = \"jim\"+random;\r",
+              "\r",
+              "pm.environment.set(\"email_env\", useremail);\r",
+              "pm.environment.set(\"name_env\",\r",
+              "username);"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\":\"{{name_env}}\",\r\n    \"email\":\"{{email_env}}\",\r\n    \"status\":\"active\"\r\n}   ",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://gorest.co.in/public/v2/users/{{userid}}",
+          "protocol": "https",
+          "host": [
+            "gorest",
+            "co",
+            "in"
+          ],
+          "path": [
+            "public",
+            "v2",
+            "users",
+            "{{userid}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete User",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.environment.unset(\"userid\");\r",
+              "pm.environment.unset(\"email_env\");\r",
+              "pm.environment.unset(\"name_env\");"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "https://gorest.co.in/public/v2/users/{{userid}}",
+          "protocol": "https",
+          "host": [
+            "gorest",
+            "co",
+            "in"
+          ],
+          "path": [
+            "public",
+            "v2",
+            "users",
+            "{{userid}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{auth_secret_0emk}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "auth_secret_0emk",
+      "secret": true
+    },
+    {
+      "key": "savedId",
+      "value": ""
+    }
+  ]
+}
