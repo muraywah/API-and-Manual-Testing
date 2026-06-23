@@ -1,88 +1,119 @@
-API TEST EXECUTION REPORT
+# API Test Execution Report
 
-Project: GoRest API Chaining Testing
+## Project Information
 
-Application: GoRest Public API
+| Item               | Details                          |
+| ------------------ | -------------------------------- |
+| **Project**        | GoRest API Chaining Testing      |
+| **Application**    | GoRest Public API                |
+| **Base URL**       | `https://gorest.co.in/public/v2` |
+| **Authentication** | Bearer Token Authentication      |
+| **Execution Type** | Manual API Testing (Postman)     |
 
-Base URL: https://gorest.co.in/public/v2
+---
 
-Authentication: Bearer Token Authentication
+## Execution Summary
 
-Execution Type: Manual API Testing (Postman)
+| Metric                    | Value |
+| ------------------------- | ----- |
+| Total Endpoints Tested    | 5     |
+| Total Test Cases Executed | 5     |
+| Passed                    | 5     |
+| Failed                    | 0     |
+| Pass Rate                 | 100%  |
 
-Total Endpoints Tested: 5
+---
 
-Total Test Cases Executed: 5
+## HTTP Methods Used
 
-Passed: 5
+* POST
+* GET
+* PUT
+* DELETE
 
-Failed: 0
+---
 
-Pass Rate: 100%
+## Validation Performed
 
-Methods Used:
+* HTTP Status Code Validation
+* Response Body Validation
+* JSON Structure Validation
+* Data Integrity Validation
+* Environment Variable Validation
+* API Chaining Validation
+* Authentication Validation
+* CRUD Operation Validation
+* Dynamic Test Data Validation
+* Response Content Verification
+* Variable Extraction and Reuse Validation
+* Environment Cleanup Validation
 
-POST
-GET
-PUT
-DELETE
+---
 
-Validation Performed:
+## Endpoints Tested
 
-HTTP Status Code Validation
-Response Body Validation
-JSON Schema / Structure Validation
-Data Integrity Validation
-Environment Variable Validation
-API Chaining Validation
-Authentication Validation
-CRUD Operation Validation
-Dynamic Test Data Validation
-Response Content Verification
-Variable Extraction and Reuse Validation
-Environment Cleanup Validation
+| Endpoint                   | Purpose                 | Expected Status |
+| -------------------------- | ----------------------- | --------------- |
+| `POST /users`              | Create User             | 201 Created     |
+| `GET /users/{{userid}}`    | Retrieve User Data      | 200 OK          |
+| `PUT /users/{{userid}}`    | Update User Information | 200 OK          |
+| `DELETE /users/{{userid}}` | Delete User             | 204 No Content  |
 
-Endpoints Tested:
+---
 
-POST /users
+## End-to-End CRUD Workflow
+
+The following API chaining workflow was successfully executed:
+
+```text
 Create User
-Status Code: 201 Created
-GET /users
-Retrieve User Data
-Status Code: 200 OK
-PUT /users/{{userid}}
-Update User Information
-Status Code: 200 OK
-DELETE /users/{{userid}}
+     ↓
+Retrieve User
+     ↓
+Update User
+     ↓
 Delete User
-Status Code: 204 No Content
-Full CRUD Chaining Flow
-Create → Read → Update → Delete
-End-to-End Validation
+```
 
-Environment Variables Used:
+**Result:** Successful end-to-end CRUD validation.
 
-{{auth_secret_0emk}}
-{{userid}}
-{{email_env}}
-{{name_env}}
+---
 
-Assertions Executed:
+## Environment Variables Used
 
-- Status code validation
+| Variable               |
+| ---------------------- |
+| `{{auth_secret_0emk}}` |
+| `{{userid}}`           |
+| `{{email_env}}`        |
+| `{{name_env}}`         |
 
-- Response field existence validation
+---
 
-- Response value verification
+## Assertions Executed
 
-- User ID extraction and storage
+* Status code validation
+* Response field existence validation
+* Response value verification
+* User ID extraction and storage
+* Environment variable creation
+* Environment variable reuse
+* Updated data verification
+* Data consistency across requests
+* Environment cleanup after deletion
 
-- Environment variable creation
+---
 
-- Environment variable reuse
+## Test Result
 
-- Updated data verification
+✅ All API requests executed successfully.
 
-- Data consistency across requests
+✅ Authentication was validated successfully.
 
-- Environment cleanup after deletion
+✅ CRUD operations completed without errors.
+
+✅ Environment variables were correctly created, stored, reused, and cleared.
+
+✅ Data consistency was maintained throughout the API chaining workflow.
+
+### Final Status: PASSED
